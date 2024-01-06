@@ -18,8 +18,8 @@ class CourseFactory extends Factory
     {
         return [
             'title' => fake()->sentence(5),
-            'tagline' => fake()->sentence(5),
-            'description' => fake()->paragraph(1),
+            'tagline' => fake()->sentence(10),
+            'description' => fake()->paragraph(4),
         ];
     }
 }
