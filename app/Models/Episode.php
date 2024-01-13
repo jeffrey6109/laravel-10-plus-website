@@ -17,23 +17,24 @@ class Episode extends Model
         return $this->belongsTo(Course::class);
     }
 
-     /**
+    /**
      * @return Attribute<string, *never>
      */
     public function formattedLength(): Attribute
     {
         return Attribute::make(
-
             get: function ($value, array $attributes) {
-
                 $hours = floor($attributes['length_in_minutes'] / 60);
-                $hours_string = $hours > 0 ? $hours . ' ' . Str::plural('hr', $hours) . ' ' : '';
-
+                $hoursString = $hours > 0 ? $hours . ' ' . Str::plural('hr', $hours) . ' ' : '';
                 $reminderMinutes = $attributes['length_in_minutes'] % 60;
-                $minutesString = $reminderMinutes .  ' ' . Str::plural('min', $reminderMinutes);
+                $minutesString = $reminderMinutes . ' ' . Str::plural('min', $reminderMinutes);
 
-                return $hours_string . $minutesString;
+                return $hoursString . $minutesString;
             }
         );
     }
+
+    protected $casts = [
+        'created_at' => 'datetime',
+    ];
 }

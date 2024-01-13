@@ -32,14 +32,15 @@ class ShowCourse extends Component implements HasInfolists, HasForms
             ->record($this->course)
             ->schema([
                 Section::make([
+
                     TextEntry::make('title')
-                        ->label('')
+                        ->hiddenLabel()
                         ->size('text-4xl')
                         ->weight('font-bold')
                         ->columnSpanFull(),
 
                     TextEntry::make('tagline')
-                        ->label('')
+                        ->hiddenLabel()
                         ->columnSpanFull(),
 
                     TextEntry::make('instructor.name')
@@ -52,21 +53,22 @@ class ShowCourse extends Component implements HasInfolists, HasForms
                         ->schema([
 
                             TextEntry::make('episodes_count')
-                                ->label('')
+                                ->hiddenLabel()
                                 ->formatStateUsing(fn ($state) =>  "$state episodes")
                                 ->icon('heroicon-o-film'),
 
                             TextEntry::make('formatted_length')
-                                ->label('')
+                                ->hiddenLabel()
                                 ->icon('heroicon-o-clock'),
 
                             TextEntry::make('created_at')
-                                ->label('')
+                                ->hiddenLabel()
                                 ->formatStateUsing(fn ($state) => $state->diffForHumans())
                                 ->icon('heroicon-o-calendar'),
 
                         ])
                         ->extraAttributes(['class' => 'border-none !p-0']),
+
                 ])->columns(2),
 
                 Section::make('About this course')
@@ -77,11 +79,11 @@ class ShowCourse extends Component implements HasInfolists, HasForms
                         RepeatableEntry::make('episodes')
                             ->schema([
                                 TextEntry::make('title')
-                                    ->label('')
+                                    ->hiddenLabel()
                                     ->icon('heroicon-o-play-circle'),
 
                                 TextEntry::make('formatted_Length')
-                                    ->label('')
+                                    ->hiddenLabel()
                                     ->icon('heroicon-o-clock'),
                             ])
                             ->columns(2),

@@ -29,9 +29,9 @@ it('has many episodes relationship', function () {
 
 it('has the episodes count', function () {
     $course = Course::factory()
-    ->for(User::factory()->instructor(), 'instructor')
-    ->has(Episode::factory()->count(10), 'episodes')
-    ->create();
+        ->for(User::factory()->instructor(), 'instructor')
+        ->has(Episode::factory()->count(10), 'episodes')
+        ->create();
 
     $course->loadCount('episodes');
 
@@ -40,25 +40,23 @@ it('has the episodes count', function () {
 
 it('has the course length', function() {
     $courseA = Course::factory()
-    ->for(User::factory()->instructor(), 'instructor')
-    ->has(Episode::factory()->state(['length_in_minutes' => 150]), 'episodes')
-    ->create();
+        ->for(User::factory()->instructor(), 'instructor')
+        ->has(Episode::factory()->state(['length_in_minutes' => 150]), 'episodes')
+        ->create();
 
     $courseB = Course::factory()
-    ->for(User::factory()->instructor(), 'instructor')
-    ->has(Episode::factory()->state(['length_in_minutes' => 61]), 'episodes')
-    ->create();
+        ->for(User::factory()->instructor(), 'instructor')
+        ->has(Episode::factory()->state(['length_in_minutes' => 61]), 'episodes')
+        ->create();
 
     $courseC = Course::factory()
-    ->for(User::factory()->instructor(), 'instructor')
-    ->create();
+        ->for(User::factory()->instructor(), 'instructor')
+        ->create();
 
     expect($courseA->formatted_length)
-    ->toBe('2 hrs 30 mins');
-
+        ->toBe('2 hrs 30 mins');
     expect($courseB->formatted_length)
-    ->toBe('1 hr 1 min');
-
+        ->toBe('1 hr 1 min');
     expect($courseC->formatted_length)
-    ->toBe('0 mins');
+        ->toBe('0 mins');
 });
